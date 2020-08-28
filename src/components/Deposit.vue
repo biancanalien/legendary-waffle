@@ -59,7 +59,7 @@ export default {
     async saveDeposit() {
       const newDeposit = {
         depositType: this.depositType,
-        value: parseInt(this.value),
+        value: this.value,
         payingSource: {
           bankName: this.bankName,
           bankNumber: this.bankNumber,
