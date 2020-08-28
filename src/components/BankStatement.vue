@@ -1,6 +1,5 @@
 <template>
   <div class="form-bank-statement">
-    <button v-on:click="getBankStatement">Visualizar extrato</button>
     <div class="bank-statement-result">
       <div v-for="(operation, i) in this.bankStatementList" :key="i">
         <p>
@@ -24,12 +23,14 @@ export default {
       bankStatementList: [],
     };
   },
+  created() {
+    this.getBankStatement();
+  },
   methods: {
     async getBankStatement() {
       bankStatementAPI
         .getOperations()
         .then(({ data }) => {
-          console.log("data", data);
           this.bankStatementList = data.bankStatementResult;
         })
         .catch((e) => {
