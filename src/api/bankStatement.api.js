@@ -1,6 +1,6 @@
 import httpClient from './httpClient';
 
-const endpoint = '/account/bank-statement';
+const endpoint = '/bank-statement';
 
 const bankStatementAPI = {
     async getOperations(params) {

@@ -1,6 +1,6 @@
 import httpClient from './httpClient';
 
-const endpoint = '/account/deposit';
+const endpoint = '/operation/deposit';
 
 const depositAPI = {
     async save(newDeposit) {

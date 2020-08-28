@@ -5,18 +5,6 @@
       <input type="text" v-model="value" />
     </div>
 
-    <h3>Conta a ser feito o resgate</h3>
-
-    <div>
-      <label>Agência</label>
-      <input type="text" v-model="branchNumber" />
-    </div>
-
-    <div>
-      <label>Número da conta com digito</label>
-      <input type="text" v-model="fullAccountNumber" />
-    </div>
-
     <h3>Instituição financeira de origem do resgate</h3>
 
     <div>
@@ -41,8 +29,6 @@ export default {
   data() {
     return {
       value: 100.55,
-      branchNumber: "0001",
-      fullAccountNumber: "543190-0",
       companyName: "Banco 24 Horas",
       cnpj: "24.363.105/0001-73",
     };
@@ -51,8 +37,6 @@ export default {
     async saveWithdraw() {
       const newWithdraw = {
         value: this.value,
-        branchNumber: this.branchNumber,
-        fullAccountNumber: this.fullAccountNumber,
         financialInstitution: {
           companyName: this.companyName,
           cnpj: this.cnpj,

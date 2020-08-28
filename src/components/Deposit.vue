@@ -10,18 +10,6 @@
       <input type="text" v-model="value" />
     </div>
 
-    <h3>Destino do depósito</h3>
-
-    <div>
-      <label>Agência</label>
-      <input type="text" v-model="branchNumber" />
-    </div>
-
-    <div>
-      <label>Número da conta com digito</label>
-      <input type="text" v-model="fullAccountNumber" />
-    </div>
-
     <h3>Origem do depósito em caso de TED ou DOC</h3>
 
     <div>
@@ -60,8 +48,6 @@ export default {
     return {
       depositType: "DOC",
       value: 335.45,
-      branchNumber: "0001",
-      fullAccountNumber: "543190-0",
       bankName: "Banco Raiz",
       bankNumber: "123",
       psBranchNumber: "2345",
@@ -74,8 +60,6 @@ export default {
       const newDeposit = {
         depositType: this.depositType,
         value: parseInt(this.value),
-        branchNumber: this.branchNumber,
-        fullAccountNumber: this.fullAccountNumber,
         payingSource: {
           bankName: this.bankName,
           bankNumber: this.bankNumber,

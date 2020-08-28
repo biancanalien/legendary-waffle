@@ -1,6 +1,6 @@
 import httpClient from './httpClient';
 
-const endpoint = '/account/withdraw';
+const endpoint = '/operation/withdraw';
 
 const withdrawAPI = {
     async save(newWithdraw) {

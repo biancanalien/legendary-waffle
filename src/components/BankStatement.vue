@@ -1,15 +1,5 @@
 <template>
   <div class="form-bank-statement">
-    <div>
-      <label>Agência</label>
-      <input type="text" v-model="branchNumber" />
-    </div>
-
-    <div>
-      <label>Número da conta com digito</label>
-      <input type="text" v-model="fullAccountNumber" />
-    </div>
-
     <button v-on:click="getBankStatement">Visualizar extrato</button>
     <div class="bank-statement-result">
       <div v-for="(operation, i) in this.bankStatementList" :key="i">
@@ -17,7 +7,7 @@
           <strong>{{operation.transactionType === "DP" ? "Depósito realizado" : "Resgate realizado"}}</strong>
         </p>
         <p>{{operation.labelDescription}}</p>
-        <p>{{operation.actionType === "D" ? `- R$${operation.value}` : `R$${operation.value}`}}</p>
+        <p>{{operation.actionType === "D" ? `- ${operation.value}` : operation.value}}</p>
         <p>{{operation.date}}</p>
       </div>
     </div>
@@ -31,22 +21,16 @@ export default {
   name: "BankStatement",
   data() {
     return {
-      branchNumber: "0001",
-      fullAccountNumber: "543190-0",
       bankStatementList: [],
     };
   },
   methods: {
     async getBankStatement() {
-      const newFilter = {
-        branchNumber: this.branchNumber,
-        fullAccountNumber: this.fullAccountNumber,
-      };
-
       bankStatementAPI
-        .getOperations(newFilter)
+        .getOperations()
         .then(({ data }) => {
-          this.bankStatementList = data;
+          console.log("data", data);
+          this.bankStatementList = data.bankStatementResult;
         })
         .catch((e) => {
           const message =
