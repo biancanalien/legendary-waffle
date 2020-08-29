@@ -6,7 +6,7 @@ import Deposit from './components/Deposit.vue'
 import Withdraw from './components/Withdraw.vue'
 
 const routes = [
-    { path: '/Login', component: Login },
+    { path: '/login', component: Login },
     { path: '/bank-statement', component: BankStatement },
     { path: '/deposit', component: Deposit },
     { path: '/withdraw', component: Withdraw },
