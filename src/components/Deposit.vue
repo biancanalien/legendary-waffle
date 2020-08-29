@@ -1,49 +1,56 @@
 <template>
-  <div class="form-deposit">
-    <div>
-      <label>Tipo do depósito (TED, DOC ou BLT)</label>
-      <input type="text" v-model="depositType" />
-    </div>
+  <div>
+    <AppHeader />
+    <div class="form-deposit">
+      <div>
+        <label>Tipo do depósito (TED, DOC ou BLT)</label>
+        <input type="text" v-model="depositType" />
+      </div>
 
-    <div>
-      <label>Valor do depósito R$</label>
-      <input type="text" v-model="value" />
-    </div>
+      <div>
+        <label>Valor do depósito R$</label>
+        <input type="text" v-model="value" />
+      </div>
 
-    <h3>Origem do depósito em caso de TED ou DOC</h3>
+      <h3>Origem do depósito em caso de TED ou DOC</h3>
 
-    <div>
-      <label>Nome do banco</label>
-      <input type="text" v-model="bankName" />
-    </div>
-    <div>
-      <label>Número do banco</label>
-      <input type="text" v-model="bankNumber" />
-    </div>
-    <div>
-      <label>Agência</label>
-      <input type="text" v-model="psBranchNumber" />
-    </div>
+      <div>
+        <label>Nome do banco</label>
+        <input type="text" v-model="bankName" />
+      </div>
+      <div>
+        <label>Número do banco</label>
+        <input type="text" v-model="bankNumber" />
+      </div>
+      <div>
+        <label>Agência</label>
+        <input type="text" v-model="psBranchNumber" />
+      </div>
 
-    <div>
-      <label>Número da conta com digito</label>
-      <input type="text" v-model="psFullAccountNumber" />
-    </div>
-    <div>
-      <label>Nome do titular da conta</label>
-      <input type="text" v-model="clientName" />
-    </div>
+      <div>
+        <label>Número da conta com digito</label>
+        <input type="text" v-model="psFullAccountNumber" />
+      </div>
+      <div>
+        <label>Nome do titular da conta</label>
+        <input type="text" v-model="clientName" />
+      </div>
 
-    <button v-on:click="saveDeposit">Realizar o depósito</button>
+      <button v-on:click="saveDeposit">Realizar o depósito</button>
+    </div>
   </div>
 </template>
 
 <script>
+import AppHeader from "./AppHeader";
 import { sucessNotification, errorNotification } from "../utils/notifications";
 import depositAPI from "../api/deposit.api";
 
 export default {
   name: "Deposit",
+  components: {
+    AppHeader,
+  },
   data() {
     return {
       depositType: "DOC",
@@ -71,8 +78,10 @@ export default {
 
       depositAPI
         .save(newDeposit)
-        .then(() => {
-          sucessNotification("Depósito realizado com sucesso!");
+        .then((response) => {
+          sucessNotification(
+            `Depósito realizado com sucesso! Novo Saldo: ${response.data.currentBankingAccount.availableBalance}`
+          );
         })
         .catch((e) => {
           const message =
@@ -92,6 +101,6 @@ export default {
 }
 .form-deposit > div,
 .form-deposit > div > label {
-  margin: 5px;
+  margin: 5px 5px 5px 0;
 }
 </style>

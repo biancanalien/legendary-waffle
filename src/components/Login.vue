@@ -28,10 +28,11 @@ export default {
   },
   methods: {
     async getLogin() {
-      localStorage.setItem(
-        "token",
-        `fakeToken&${this.fullAccountNumber}&${this.branchNumber}`
-      );
+      localStorage.setItem("currentUser", null);
+      localStorage.setItem("token", null);
+
+      const fakeToken = `fakeToken&${this.fullAccountNumber}&${this.branchNumber}`;
+      localStorage.setItem("token", fakeToken);
 
       accountAPI
         .getAccount()
@@ -60,6 +61,6 @@ export default {
 }
 .form-login > div,
 .form-login > div > label {
-  margin: 5px;
+  margin-right: 5px;
 }
 </style>
