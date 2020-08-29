@@ -1,4 +1,6 @@
-# bbank-app
+# BBank 
+
+Simple app to BBank API project
 
 ## Project setup
 ```
